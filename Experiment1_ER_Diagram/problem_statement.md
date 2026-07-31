@@ -69,33 +69,38 @@ The Central Library wants to manage book lending and cultural events.
 - Overdue fines apply for late returns.
 
 ### ER Diagram:
-*Paste or attach your diagram here*  
-![ER Diagram](er_diagram_library.png)
+<img width="1031" height="685" alt="image" src="https://github.com/user-attachments/assets/c270dc70-865d-451a-8c43-c10e8343ccc9" />
 
-### Entities and Attributes
+
+## Entities and Attributes
 
 | Entity | Attributes (PK, FK) | Notes |
-|--------|--------------------|-------|
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-
-### Relationships and Constraints
-
-| Relationship | Cardinality | Participation | Notes |
-|--------------|------------|---------------|-------|
-|              |            |               |       |
-|              |            |               |       |
-|              |            |               |       |
-
-### Assumptions
-- 
-- 
-- 
+|---------|----------------------|-------|
+| Member | MemberID (PK), Name, Phone | Stores library member details. |
+| Book | BookID (PK), Title, Author, Category, LoanDate, ReturnDate, FineAmount | Stores book details and borrowing information. |
+| Event | EventID (PK), EventName, EventDate, SpeakerName | Stores cultural event details and speaker information. |
+| Room | RoomID (PK), RoomName, Capacity | Stores rooms used for events and study sessions. |
 
 ---
+
+## Relationships and Constraints
+
+| Relationship | Cardinality | Participation | Notes |
+|--------------|-------------|---------------|-------|
+| Member — Borrows — Book | M:N | Partial | A member can borrow multiple books, and a book can be borrowed by different members over time. |
+| Member — Registers — Event | M:N | Partial | Members can register for multiple events, and each event can have many members. |
+| Room — Hosts — Event | 1:M | Total (Event) | Each event is conducted in one room, while a room can host multiple events. |
+
+---
+
+## Assumptions
+
+- Each member has a unique MemberID.
+- Each book has a unique BookID.
+- LoanDate and ReturnDate are stored with the Book entity for simplicity.
+- FineAmount is recorded only when a book is returned after the due date.
+- Speaker information is stored as the SpeakerName attribute of the Event entity.
+- A room can be used for both cultural events and study sessions.
 
 # Scenario C: Restaurant Table Reservation & Ordering
 
