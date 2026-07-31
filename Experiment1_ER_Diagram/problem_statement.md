@@ -116,33 +116,38 @@ A popular restaurant wants to manage reservations, orders, and billing.
 - Waiters assigned to serve reservations.
 
 ### ER Diagram:
-*Paste or attach your diagram here*  
-![ER Diagram](er_diagram_restaurant.png)
+<img width="1062" height="681" alt="image" src="https://github.com/user-attachments/assets/ac748e5b-e7de-4e0e-be65-014d5c4661f7" />
 
-### Entities and Attributes
+
+## Entities and Attributes
 
 | Entity | Attributes (PK, FK) | Notes |
-|--------|--------------------|-------|
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-
-### Relationships and Constraints
-
-| Relationship | Cardinality | Participation | Notes |
-|--------------|------------|---------------|-------|
-|              |            |               |       |
-|              |            |               |       |
-|              |            |               |       |
-
-### Assumptions
-- 
-- 
-- 
+|---------|----------------------|-------|
+| Customer | CustomerID (PK), Name, Phone | Stores customer details. |
+| Reservation | ReservationID (PK), ReservationDate, ReservationTime, NoOfGuests, TableNo | Stores reservation information for customers. |
+| Order | OrderID (PK), DishName, Category, Quantity | Stores food orders placed for a reservation. |
+| Bill | BillID (PK), FoodCharge, ServiceCharge, TotalAmount | Stores billing information for each reservation. |
 
 ---
+
+## Relationships and Constraints
+
+| Relationship | Cardinality | Participation | Notes |
+|--------------|-------------|---------------|-------|
+| Customer — Makes — Reservation | 1:M | Partial | A customer can make multiple reservations or walk in. |
+| Reservation — Places — Order | 1:M | Total (Order) | Each reservation can have multiple food orders. |
+| Reservation — Generates — Bill | 1:1 | Total (Bill) | Every reservation generates exactly one bill. |
+
+---
+
+## Assumptions
+
+- Each customer has a unique CustomerID.
+- Walk-in customers are also recorded as customers.
+- Dish category (Starter, Main Course, Dessert) is stored as an attribute of the Order entity.
+- Each reservation is assigned a table number.
+- Each bill includes both food charges and service charges.
+```
 
 ## Instructions for Students
 
