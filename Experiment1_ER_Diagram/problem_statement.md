@@ -22,33 +22,38 @@ FlexiFit Gym wants a database to manage its members, trainers, and fitness progr
 - Payments tracked for memberships and sessions.
 
 ### ER Diagram:
-*Paste or attach your diagram here*  
-![ER Diagram](er_diagram_fitness.png)
+<img width="1035" height="671" alt="image" src="https://github.com/user-attachments/assets/e1b1b045-0d8f-4a37-b38a-13032a814e92" />
 
-### Entities and Attributes
+
+## Entities and Attributes
 
 | Entity | Attributes (PK, FK) | Notes |
-|--------|--------------------|-------|
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-
-### Relationships and Constraints
-
-| Relationship | Cardinality | Participation | Notes |
-|--------------|------------|---------------|-------|
-|              |            |               |       |
-|              |            |               |       |
-|              |            |               |       |
-
-### Assumptions
-- 
-- 
-- 
+|---------|----------------------|-------|
+| Member | MemberID (PK), Name, PhoneNo | Stores member details. |
+| Trainer | TrainerID (PK), TrainerName, PhoneNo | Stores trainer details. |
+| Session | Time, Plan | Stores session information. |
+| Payment | PaymentID (PK), Amount, DateOfPay | Stores payment details. |
 
 ---
+
+## Relationships and Constraints
+
+| Relationship | Cardinality | Participation | Notes |
+|--------------|-------------|---------------|-------|
+| Member — Workout — Trainer | M:N | Partial | A member can work out with multiple trainers, and a trainer can train multiple members. |
+| Workout — Program — Session | 1:M | Total (Session) | A workout is associated with one or more sessions. |
+| Member — Payment | 1:M | Total (Payment) | A member can make multiple payments, and each payment belongs to one member. |
+
+---
+
+## Assumptions
+
+- Each member has a unique MemberID.
+- Each trainer has a unique TrainerID.
+- Members can train with multiple trainers.
+- Trainers can train multiple members.
+- Payments are made only by registered members.
+- Session information consists of a plan and scheduled time.
 
 # Scenario B: City Library Event & Book Lending System
 
