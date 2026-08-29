@@ -1,4 +1,143 @@
 # Experiment 6: Joins
+
+## AIM
+To study and implement different types of joins.
+
+## THEORY
+
+SQL Joins are used to combine records from two or more tables based on a related column.
+
+### 1. INNER JOIN
+Returns records with matching values in both tables.
+
+**Syntax:**
+```sql
+SELECT columns
+FROM table1
+INNER JOIN table2
+ON table1.column = table2.column;
+```
+
+### 2. LEFT JOIN
+Returns all records from the left table, and matched records from the right.
+
+**Syntax:**
+
+```sql
+SELECT columns
+FROM table1
+LEFT JOIN table2
+ON table1.column = table2.column;
+```
+### 3. RIGHT JOIN
+Returns all records from the right table, and matched records from the left.
+
+**Syntax:**
+
+```sql
+SELECT columns
+FROM table1
+RIGHT JOIN table2
+ON table1.column = table2.column;
+```
+### 4. FULL OUTER JOIN
+Returns all records when there is a match in either left or right table.
+
+**Syntax:**
+
+```sql
+SELECT columns
+FROM table1
+FULL OUTER JOIN table2
+ON table1.column = table2.column;
+```
+
+**Question 1**
+--
+-- Write the SQL query that achieves the selection of the first name from the "patients" table (aliased as "patient_name") and the first name from the "doctors" table (aliased as "doctor_name"), with an inner join on the "doctor_id" column and a condition filtering for patients with a date of birth after '1990-01-01'.
+
+```sql
+-- SELECT p.first_name AS patient_name, d.first_name AS doctor_name 
+FROM PATIENTS p 
+INNER JOIN DOCTORS d
+ON p.doctor_id = d.doctor_id 
+WHERE p.discharge_date > '1990-01-01';
+```
+
+**Output:**
+
+![{8F148877-806A-42C7-B15D-309117E894C2}](https://github.com/user-attachments/assets/f1efb924-36d5-46fb-93b9-9e50726123ed)
+
+
+**Question 2**
+---
+-- Write the SQL query that achieves the selection of the first name from the "patients" table and all columns from the "surgeries" table, with an inner join on the "patient_id" column. Include conditions to filter for patients discharged between '2024-03-01' and '2024-03-31' but not admitted during the same period.
+
+```sql
+-- select p.first_name, s.surgery_id, p.patient_id, s.surgeon_id, s.surgery_date 
+FROM PATIENTS p
+INNER JOIN SURGERIES s 
+ON p.patient_id = s.patient_id 
+WHERE p.discharge_date BETWEEN '2024-03-01' AND '2024-03-31';
+```
+
+**Output:**
+
+![{C9528443-D15B-4F4F-B456-B7FA29333A42}](https://github.com/user-attachments/assets/69ac0bac-b6b7-4d5e-a2e5-c2a96d4d8d11)
+
+**Question 3**
+---
+-- From the following tables write a SQL query to find the salesperson(s) and the customer(s) he represents. Return Customer Name, city, Salesman, commission.
+
+```sql
+-- SELECT c.cust_name AS "Customer Name", c.city, s.name as Salesman, s.commission 
+FROM customer c 
+JOIN salesman s 
+ON c.salesman_id = s.salesman_id;
+```
+
+**Output:**
+
+![{0BEEBBB1-764C-4DFA-873F-313478B6ABD3}](https://github.com/user-attachments/assets/195e895f-05fe-4053-9cdb-097cae2af124)
+
+
+**Question 4**
+---
+-- Write the SQL query that achieves the selection of the "cust_name" column from the "customer" table (aliased as "c"), and the "ord_no," "ord_date," and "purch_amt" columns from the "orders" table (aliased as "o"), with a left join on the "customer_id" column.
+
+```sql
+-- SELECT c.cust_name, o.ord_no, o.ord_date, o.purch_amt 
+FROM CUSTOMER c
+LEFT JOIN ORDERS o
+ON c.customer_id = o.customer_id;
+```
+
+**Output:**
+
+![{EABB1F66-497B-4CAA-83F6-663977C6E006}](https://github.com/user-attachments/assets/9acde775-9ef5-4acf-834d-86afe8250908)
+
+
+**Question 5**
+---
+-- write a SQL query to find the salesperson and customer who reside in the same city. Return Salesman, cust_name and city.
+
+```sql
+-- SELECT s.name AS "Salesman", c.cust_name, s.city 
+FROM salesman s, customer c
+WHERE s.city = c.city;
+```
+
+**Output:**
+
+![{0AD4A2D3-2221-418D-AD03-6E28AE466899}](https://github.com/user-attachments/assets/b4d44123-53fa-4680-b12e-d2bf678a2aed)
+
+
+**Question 6**
+---
+-- Write the SQL query that achieves the selection of the first name from the "patients" table (aliased as "patient_name") and the specialization from the "doctors" table (aliased as "Doctor_specialization"), with an inner join on the "doctor_id" column and a condition filtering for patients admitted between '2024-01-01' and '2024-01-31'.
+
+```sql
+-- SELECT p.first_name AS "patient_name", d.specialization AS "Doctor_specialization" 
 FROM PATIENTS p 
 INNER JOIN DOCTORS d 
 ON p.doctor_id = d.doctor_id 
@@ -29,6 +168,7 @@ ON c.salesman_id = s.salesman_id;
 
 **Question 8**
 ---
+
 -- SQL statement to generate a report with customer name, city, order number, order date, order amount, salesperson name, and commission to determine if any of the existing customers have not placed orders or if they have placed orders through their salesman or by themselves.
 
 ```sql
@@ -110,3 +250,4 @@ ORDER BY o.ord_no;
 
 ## RESULT
 Thus, the SQL queries to implement different types of joins have been executed successfully.
+
